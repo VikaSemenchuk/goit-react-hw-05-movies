@@ -25,7 +25,7 @@ export const StyledNotFoundPage = styled.h1`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
+text-align: center;
   height: 70vh;
   margin-bottom: 40px;
 

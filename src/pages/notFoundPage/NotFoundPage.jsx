@@ -1,9 +1,10 @@
+import React, { Suspense } from 'react';
+
 import Loader from 'components/loader/Loader';
 import { Container } from 'layout/layout/Layout.styled';
-import React, { Suspense } from 'react';
 import { StyledNotFoundPage, StyledLink } from './NotFoundPage.styled';
 
-const NotFoundPage = () => {
+export default function NotFoundPage () {
   return (
     <Suspense fallback={<Loader />}>
       <Container>
@@ -15,5 +16,3 @@ const NotFoundPage = () => {
     </Suspense>
   );
 };
-
-export default NotFoundPage;

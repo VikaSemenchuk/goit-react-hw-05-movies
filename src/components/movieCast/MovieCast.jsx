@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
+import { toast } from 'react-toastify';
 import { APImovieDetailsCast } from 'components/service/api';
 import { StyledCastList } from './MovieCast.styled';
 
-const MovieCast = () => {
+export default function MovieCast() {
   const [cast, setCast] = useState([]);
-  const [error, setError] = useState(null);
-
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -14,9 +14,9 @@ const MovieCast = () => {
       try {
         const data = await APImovieDetailsCast(movieId);
         setCast(data);
-        setError(null);
+        
       } catch (error) {
-        setError(error.message);
+        toast.error(`Oops, some error occurred... Message: ${error.message}`);
       }
     };
     getMovieCast();
@@ -24,7 +24,6 @@ const MovieCast = () => {
 
   return (
     <>
-      {error !== null && <p>Oops, some error occurred... Message: {error}</p>}
       {cast.length === 0 ? (
         <p>Sorry we have no information about the actors</p>
       ) : (
@@ -46,6 +45,4 @@ const MovieCast = () => {
       )}
     </>
   );
-};
-
-export default MovieCast;
+}

@@ -1,12 +1,12 @@
-import { APImovieDetailsReviews } from 'components/service/api';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import { APImovieDetailsReviews } from 'components/service/api';
 import { ListReview, ReviewSpan, ReviewTitle } from './MovieReview.styled';
 
-const MovieReview = () => {
+export default function MovieReview () {
   const [reviews, setReviews] = useState([]);
-  const [error, setError] = useState(null);
-
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -14,18 +14,17 @@ const MovieReview = () => {
       try {
         const data = await APImovieDetailsReviews(movieId);
         setReviews(data);
-        setError(null);
+
       } catch (error) {
-        setError(error.message);
+        toast.error(`Oops, some error occurred... Message: ${error.message}`)
       }
     };
     getMovieReview();
   }, [movieId]);
+
   return (
     <>
-      {error !== null && <p>Oops, some error occurred... Message: {error}</p>}
-
-      {reviews.length === 0 ? (
+      {reviews.length === 0  ? (
         <p>Sorry there are still no reviews</p>
       ) : (
         <ListReview>
@@ -45,5 +44,3 @@ const MovieReview = () => {
     </>
   );
 };
-
-export default MovieReview;

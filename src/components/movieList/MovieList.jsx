@@ -4,7 +4,7 @@ import MovieListItem from 'components/movieListItem/MovieListItem';
 
 import { StyledMovieList } from './MovieList.styled';
 
-const MovieList = ({ movies }) => {
+export default function MovieList({ movies }) {
   return (
     <StyledMovieList>
       {movies.map(el => {
@@ -12,10 +12,8 @@ const MovieList = ({ movies }) => {
       })}
     </StyledMovieList>
   );
-};
+}
 
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
-
-export default MovieList;

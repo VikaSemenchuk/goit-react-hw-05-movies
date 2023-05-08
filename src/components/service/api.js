@@ -25,6 +25,7 @@ export const APIsearchMovies = async query => {
   // тут додаткого додаємо ще один аргумент-обʼєкт params, куди передаємо дані для рядка запиту
   const response = await moviesAPI.get('/search/movie', { params: { query } });
   const { data } = response;
+  
   return data.results;
 };
 
